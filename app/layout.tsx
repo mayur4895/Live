@@ -23,6 +23,7 @@ import { getCurrentUser } from  '../app/actions/getCurrentUser';
 import RentModal from '@/components/modals/rentModal';
 import ImageUpload from '@/components/inputes/imageupload';
 import Home from './page';
+import { SafeUser } from './types';
  
 const  pop =  Poppins({
   weight:[ '200' ,'400', '500',   '600' ,'700'],
@@ -55,10 +56,11 @@ export default async function RootLayout({children}: {
             <RentModal/>
             <RegisterModal isOpen/>
             <LoginModal/>
-             <Navbar currentUser={currentUser}/>
-          <Home/>
+             <Navbar currentUser={currentUser}/> 
           </ClientOnly> 
-         {children}    
+     <div className='pt-20 pb-20'>
+     {children}    
+     </div>
         </GlobalState> 
      
      

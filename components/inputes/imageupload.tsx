@@ -43,7 +43,7 @@ const handleUpload = useCallback((result:any)=>{
     return(
         <div
         onClick={()=>open?.()}
-        className="relative cursor-pointer hove:opacity-70 border-dashed border-2 p-20 border-neutral-400 flex flex-col justify-center items-center text-neutral-700"
+        className="relative cursor-pointer hove:opacity-70 border-dashed border p-20 border-neutral-300 flex flex-col justify-center items-center text-neutral-700"
         >
       <TbPhotoPlus size={50}/>
       <div className=" mt-2 font-medium">

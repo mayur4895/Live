@@ -37,6 +37,7 @@
     "cmdk": "^0.2.0",
     "cn": "^0.1.1",
     "country-flag-icons": "^1.5.9",
+    "date-fns": "^2.30.0",
     "eslint": "8.41.0",
     "eslint-config-next": "13.4.4",
     "flag-icon-css": "^4.1.7",

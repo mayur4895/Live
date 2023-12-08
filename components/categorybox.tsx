@@ -54,7 +54,7 @@ router.push(url);
 
 <div>
 <Card onClick={handleClick} className={`border w-32    hover:text-slate-800 transition-all    cursor-pointer flex flex-col items-center gap-3 p-3 border-b-2 
-         ${seleced ?  'border-yellow-400 bg-yellow-50 border-b-transparent'    : 'border-b-transparent ' } 
+         ${seleced ?  'border-yellow-400 bg-yellow-50 border'    : 'border ' } 
          ${seleced ?  'text-slate-800'    : 'text-slate-500 ' }
          `}> 
 <div className="    place-items-center    grid">
