@@ -7,6 +7,9 @@ import useCountries from "@/app/hooks/usecountries";
 import { useCallback, useMemo } from 'react';
 import {format} from "date-fns";
 import Image from "next/image";
+import HeartButton from "../heartbutton";
+import { Button } from "../ui/button";
+import { BiRupee } from "react-icons/bi";
 interface ListingCardProps{
     data:Listing,
     currentUser:SafeUser | null, 
@@ -76,14 +79,39 @@ return `${format(start, 'PP')} -  ${format(end,'PP')}`
 return(<>
 <div  onClick={()=> router.push(`/listing/${data.id}`)} className="col-span-1 cursor-pointer group" >
   <div className="flex flex-col gap-2 w-full">
-     <div className=" aspect-square w-full relative overflow-hidden rounded-xl">
+     <div className="  aspect-square w-full relative overflow-hidden shadow-md rounded-xl">
         <Image  
          fill
          alt="Listing"
          src={data.imageSrc}
           className="objext-cover h-full w-full group-hover:scale-110 transition"
         />
+        <HeartButton
+        currentUser={currentUser}
+         listingId={data.id}  
+        />
+       
      </div>
+     <div className="font-semibold text-neutral-700 flex flex-row gap-3 items-center">
+     <img
+  alt={location?.flag}
+  src={`http://purecatamphetamine.github.io/country-flag-icons/3x2/${location?.value}.svg`}
+  
+  height={20}
+  width={20}
+  />
+       <span>   {location?.region} , {location?.label}</span>
+         </div>
+         <div className="text-sm font-medium text-gray-600">{reservationDate ||  data.category || "not specified"}</div>
+         <div className="flex flex-row gap-5">
+            <div className="flex flex-row "> <BiRupee size={20}/> {data.price}</div>
+         <div>{!reservation && (
+            <div className="text-sm">Night</div>
+         )}</div>
+         </div>
+             <div>{onAction  && actionLabel && (
+               <Button disabled={disabled} onClick={handleCancel}>{actionLabel}</Button>
+         )}</div>
   </div>
 </div>
 </>)
