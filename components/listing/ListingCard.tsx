@@ -1,6 +1,6 @@
 "use client"
 
-import { SafeUser } from "@/app/types";
+import { SafeListting, SafeUser } from "@/app/types";
 import { Listing, Reservation, User } from "@prisma/client";
 import { useRouter } from "next/navigation";
 import useCountries from "@/app/hooks/usecountries";
@@ -11,12 +11,12 @@ import HeartButton from "../heartbutton";
 import { Button } from "../ui/button";
 import { BiRupee } from "react-icons/bi";
 interface ListingCardProps{
-    data:Listing,
-    currentUser:SafeUser | null, 
+    data:SafeListting,
+    currentUser?:SafeUser | null, 
     reservation?:Reservation;
     onAction?:(id:string)=>void;
     actionLabel?:string;
-    actionId?:string
+    actionId?:string   
     disabled?:boolean
 
     
@@ -77,7 +77,7 @@ return `${format(start, 'PP')} -  ${format(end,'PP')}`
 
 
 return(<>
-<div  onClick={()=> router.push(`/listing/${data.id}`)} className="col-span-1 cursor-pointer group" >
+<div  onClick={()=> router.push(`/listings/${data.id}`)} className="col-span-1 cursor-pointer group" >
   <div className="flex flex-col gap-2 w-full">
      <div className="  aspect-square w-full relative overflow-hidden shadow-md rounded-xl">
         <Image  

@@ -54,6 +54,7 @@ import { signOut } from "next-auth/react";
 import { SafeUser } from "@/app/types";
 import LoginModal from "../modals/loginModal";
 import userRentModal from "@/app/hooks/rentmodal";
+import { useRouter } from "next/navigation";
  
 
 
@@ -66,7 +67,7 @@ interface UserNavbarProps{
    const registerModal = userRegisterModal();
   const loginModal = userLoginModal();
   const  rentModal =  userRentModal();
-
+ const router = useRouter();
   const  onrent = useCallback(()=>{ 
    if(!currentUser){
     return loginModal.onOpen();
@@ -135,7 +136,7 @@ interface UserNavbarProps{
             <MenubarTrigger onClick={()=>{rentModal.onOpen() , setisopen(false)}}  className=" flex gap-4 cursour-pinter whitespace-nowrap">My Home </MenubarTrigger> 
           </MenubarMenu>   
           <MenubarMenu> 
-            <MenubarTrigger onClick={()=>{signOut() ,setisopen(false)}}  className=" flex gap-4 cursour-pinter whitespace-nowrap">     Logout</MenubarTrigger> 
+            <MenubarTrigger onClick={()=>{signOut() ,setisopen(false) , router.push("/")}}  className=" flex gap-4 cursour-pinter whitespace-nowrap">     Logout</MenubarTrigger> 
           </MenubarMenu>   
    </div>   : 
 
