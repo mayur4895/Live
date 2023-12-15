@@ -18,7 +18,7 @@ export default async function getFavoriteListings() {
  
       where: {
         id: {
-          in: [...(currentUser.favoriteIds || [])]
+          in: [...(currentUser.favoritesIds || [])]  
         }
       }
     });

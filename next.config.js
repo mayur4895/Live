@@ -21,6 +21,8 @@ const nextConfig = {
  
 
 module.exports = {
- 
+  eslint: {
+    dirs: ['pages', 'utils'], 
+  },
   nextConfig
 }
