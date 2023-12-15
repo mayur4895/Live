@@ -13,7 +13,7 @@ export async function POST(
      if(!currentUser){
         return NextResponse.error();
      }
- console.log(currentUser);
+ 
  
     const body = await request.json();
  const {

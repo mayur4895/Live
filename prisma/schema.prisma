@@ -20,11 +20,9 @@ model User{
   hashedPassword String?
   createdAt DateTime @default(now()) 
   updatedAt DateTime @updatedAt
-  favoriteIds String[] @db.ObjectId
-
-
+  favoriteIds String[] @db.ObjectId  
   accounts  Account[]
-  Listings Listing[]
+  listings Listing[]
   reservations Reservation[]
 } 
 
@@ -51,36 +49,30 @@ model Account{
 
 
 model Listing{
-id  String @id @default(auto()) @map("_id") @db.ObjectId 
-   userId String @db.ObjectId
-    title String
-    imageSrc String
-     category String  
-     description String
-  createdAt DateTime @default(now()) 
-  roomCount Int
+  id            String        @id @default(auto()) @map("_id") @db.ObjectId
+  title         String
+  description   String
+  imageSrc      String
+  createdAt     DateTime      @default(now())
+  category      String
+  roomCount     Int
   bathroomCount Int
-  guestCount Int
+  guestCount    Int
   locationValue String
-  price Int
-
- user User @relation(fields: [userId] ,references: [id] , onDelete:Cascade)
-
-reservations Reservation[]
+  userId        String        @db.ObjectId
+  price         Int
+  user          User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  reservations  Reservation[]
 }
 
-
-model Reservation{
-id  String @id @default(auto()) @map("_id") @db.ObjectId
-   userId String @db.ObjectId
-   listingId String  @db.ObjectId
-   startDate DateTime
-   endDate DateTime
-   totalPrice Int
-    createdAt DateTime @default(now()) 
-
-
-
-    listing Listing @relation(fields: [userId] ,references: [id] , onDelete:Cascade)
-    user User @relation(fields: [userId] ,references: [id] , onDelete:Cascade)
+model Reservation {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  userId     String   @db.ObjectId
+  listingId  String   @db.ObjectId
+  startDate  DateTime
+  endDate    DateTime
+  totalPrice Int
+  createdAt  DateTime @default(now())
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  listing    Listing  @relation(fields: [listingId], references: [id], onDelete: Cascade)
 }

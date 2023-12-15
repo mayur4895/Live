@@ -1,38 +1,35 @@
 'use client'
 
-import { SafeListting, SafeUser } from "@/app/types"
-import { Reservation } from "@prisma/client"
+import {   SafeListting, SafeReservation, SafeUser } from "@/app/types" 
 import ListingHead from "./listingHead";
  import Container from "@/components/container";
 import { useCallback, useEffect, useMemo, useState } from "react";
   
 import ListingInfo from "./ListingInfo";
-import ListingCategory from "./ListingCategory";
-import { categorieslist } from "@/components/Navbar/categories";
+ import { categorieslist } from "@/components/Navbar/categories";
 import userLoginModal from "@/app/hooks/loginmodal";
 import { useRouter } from "next/navigation";
 import { differenceInCalendarDays, eachDayOfInterval } from "date-fns";
 import axios from "axios";
 import { toast } from "@/components/ui/use-toast";
 import ListingReservation from "./ListingReservation";
-import { DateRange } from "react-date-range";
+import { DateRange, Range } from "react-date-range";
   
 
 
 
 const intialDateRange ={
-    startDate:new Date(),
-    endDate:new Date(),
-    key:'selection'
-
+  startDate: new Date(),
+  endDate: new Date(),
+  key: "selection",
 }
 
 interface  ListingClientProps{
-    reservations?:Reservation[];
-    listing:SafeListting&{
+    reservations?:SafeReservation[];
+    listing:SafeListting &{
         user:SafeUser
     }
-    currentUser?:SafeUser | null;
+    currentUser?: SafeUser | null;
  }
 
 
@@ -63,8 +60,9 @@ return dates;
 
 const [Loding ,setLoding] = useState(false);
 const [totalPrice ,settotalPrice] = useState(listing.price);
-const [dateRange ,setdateRange] = useState(intialDateRange);
-
+const [dateRange ,setdateRange] = useState<Range>(intialDateRange);
+    
+ 
 
 const  onCreateReservation = useCallback(()=> {
   if(!currentUser){
@@ -72,7 +70,7 @@ const  onCreateReservation = useCallback(()=> {
   }
   setLoding(true);
 
-  axios.post('/api/reservations',{
+  axios.post('/api/reservation',{
     totalPrice,
     startDate:dateRange.startDate,
     endDate:dateRange.endDate,
@@ -82,6 +80,10 @@ const  onCreateReservation = useCallback(()=> {
         title:"Reseervation Done",
         description:"reservation successufly"
     })
+
+    setdateRange(intialDateRange);
+    router.refresh();
+    router.push("/trips")
   }).catch(()=>{
     toast({
         variant:'destructive',
@@ -93,30 +95,33 @@ const  onCreateReservation = useCallback(()=> {
   })
 
   
-   },[listing]);
+   },[totalPrice, router,currentUser,loginModal,dateRange,listing?.id]);
        
-    
-useEffect(()=>{
-if(dateRange.startDate && dateRange.endDate){
-    const dayCount = differenceInCalendarDays(
-        dateRange.endDate,
-        dateRange.startDate
-    );
-
-    if(dayCount && listing.price){
-        settotalPrice(dayCount * listing.price);
-    }else{
-        settotalPrice(listing.price);
-    }
-}
-},[dateRange,listing.price])
+ 
 
 
  const category = useMemo(()=> {
   return categorieslist.find((item)=>
   item.label === listing.category);
- },[listing]);
+ },[listing.category]);
      
+
+
+ useEffect(()=>{
+  if(dateRange.startDate && dateRange.endDate){
+      const dayCount = differenceInCalendarDays(
+          dateRange.endDate,
+          dateRange.startDate
+      );
+  
+      if(dayCount && listing.price){
+        settotalPrice(dayCount * listing.price);
+      }else{
+        settotalPrice(listing.price);
+      }
+  }
+  },[dateRange,listing.price]);
+
     return(<>   
        
  <Container>
@@ -130,7 +135,7 @@ if(dateRange.startDate && dateRange.endDate){
     currentUser={currentUser}   
  
       />
-      <div className=" grid grid-cols-1 md:grid-cols-7 md:gap-10 mt-6">
+      <div className=" grid grid-cols-1 md:grid-cols-7 md:gap-8 mt-6   ">
 
     
       <ListingInfo
@@ -145,7 +150,7 @@ if(dateRange.startDate && dateRange.endDate){
  
       />
 
-<div className="order-first mb-10 md:order-last md:col-span-3">
+<div className="order-first mb-10 md:order-last md:col-span-3 place-items-center w-full">
  <ListingReservation 
   price={listing.price}
   totalPrice={totalPrice}
@@ -153,7 +158,7 @@ if(dateRange.startDate && dateRange.endDate){
   onSubmit={onCreateReservation}
   disabled={Loding}
   disableDates={disableDates}
-  dateRange={dateRange}
+  dateRange={dateRange}  
  />
       </div>
    </div>
@@ -161,9 +166,9 @@ if(dateRange.startDate && dateRange.endDate){
    
  
 </div>
-</div>
+</div> 
 
- </Container>
+ </Container> 
    
     </>)
 }

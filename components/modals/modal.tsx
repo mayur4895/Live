@@ -113,8 +113,10 @@ const Modal:React.FC<Modalprops> = ({
   {title}
  <button  onClick={onClose}  >  <BiX size={25}/> </button>
  </div>
-      <div className="">
-      {body}
+      <div className="w-full m-auto ">
+     
+    {body}
+  
       </div>
      
         <div  className="flex flex-row justify-between gap-4 mt-5" >

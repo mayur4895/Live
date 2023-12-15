@@ -115,4 +115,13 @@
   @apply outline-none
  
 }
+.rdrMonth{
+  width: 100% !important;
+}
+
+.rdCalendarWrapper{
+  font-size: 16px !important;
+  width: 100% !important;
+}
+
  

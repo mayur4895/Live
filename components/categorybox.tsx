@@ -21,7 +21,7 @@ import { useCallback } from 'react';
  }
 
 
-const categoryBox:React.FC<CategoryProps> = ({label,icon:Icon,seleced})=>{
+const CategoryBox:React.FC<CategoryProps> = ({label,icon:Icon,seleced})=>{
 
     const router =  useRouter();
     const  params =   useSearchParams();
@@ -71,4 +71,4 @@ router.push(url);
     )
 }
 
-export default categoryBox
+export default CategoryBox

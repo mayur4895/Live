@@ -121,13 +121,13 @@ interface UserNavbarProps{
    {   currentUser ?
    <div className="grid gap-4 py-4"> 
           <MenubarMenu> 
-            <MenubarTrigger onClick={()=>{}}  className=" flex gap-4 cursour-pinter whitespace-nowrap">My Properties</MenubarTrigger> 
+            <MenubarTrigger onClick={()=>{ router.push("/properties"),setisopen(false)}}  className=" flex gap-4 cursour-pinter whitespace-nowrap">My Properties</MenubarTrigger> 
           </MenubarMenu>   
           <MenubarMenu> 
-            <MenubarTrigger onClick={()=>{}}  className=" flex gap-4 cursour-pinter whitespace-nowrap">My Trips</MenubarTrigger> 
+            <MenubarTrigger onClick={()=>{ router.push("/trips"),setisopen(false)}}  className=" flex gap-4 cursour-pinter whitespace-nowrap">My Trips</MenubarTrigger> 
           </MenubarMenu>   
           <MenubarMenu> 
-            <MenubarTrigger onClick={()=>{}}  className=" flex gap-4 cursour-pinter whitespace-nowrap">My Favoraites</MenubarTrigger> 
+            <MenubarTrigger onClick={()=>{ router.push("/favorites"),setisopen(false)}}   className=" flex gap-4 cursour-pinter whitespace-nowrap">My Favoraites</MenubarTrigger> 
           </MenubarMenu>   
           <MenubarMenu> 
             <MenubarTrigger onClick={()=>{}}  className=" flex gap-4 cursour-pinter whitespace-nowrap">My Reservations </MenubarTrigger> 

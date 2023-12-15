@@ -5,16 +5,21 @@ import ImageUpload from "@/components/inputes/imageupload"
  import { Button } from "@/components/ui/button"
  import Container from "@/components/container"
 import Empty from "@/components/emptyState"
-import { getListings } from "./actions/getListings"
+import { getListings, IListingsParams } from './actions/getListings';
 import Image from "next/image"
 import ListingCard from "@/components/listing/ListingCard"
 import { getCurrentUser } from "./actions/getCurrentUser"
  
-export default async function Home() {
+
+ interface HomeProps{
+  searchParams:IListingsParams
+ }
+
+ const Home= async( {searchParams}:HomeProps) => {
 
  
  const isempty =  false;
- const listings:any = await getListings();
+ const listings:any = await getListings(searchParams);
  const currentUser = await getCurrentUser();
   console.log( );
   
@@ -22,10 +27,15 @@ export default async function Home() {
  if(listings.length === 0  || listings == null){
   return(
     <ClientOnly> 
-      <Empty showReset/>  
+      <Empty  
+      title="Not found"
+      subtitle="please click on remove filter"
+      showReset/>  
     </ClientOnly>
   )
  }
+
+ 
   
   return (
     <>
@@ -53,3 +63,4 @@ md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5
 }
 
  
+export default  Home;

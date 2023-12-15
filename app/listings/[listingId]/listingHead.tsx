@@ -31,11 +31,13 @@ return(<>
    <h3 className="font-semibold text-2xl">{title}</h3>  
    <span className="text-sm">{location?.region}, {location?.label}</span>
 </div>
-<div className="rounded-xl w-full h-[60vh] relative overflow-hidden shadow-md">
+ 
+ <div className="rounded-xl  items-center  md:h-[60vh] lg:h-[80vh]  h-[60vh]  w-full     relative overflow-hidden shadow-md">
 <Image
 fill
 src={imageSrc}
-alt={title} 
+alt={title}  
+ 
 />
 <div className=" absolute top-5 right-5">
     <HeartButton 
@@ -44,6 +46,7 @@ alt={title}
     />
 </div>
 </div>
+ 
 </>)
 }
 

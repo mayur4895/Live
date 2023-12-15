@@ -1,6 +1,6 @@
 "use client"
 
-import { SafeListting, SafeUser } from "@/app/types";
+import { SafeListting, SafeReservation, SafeUser } from "@/app/types";
 import { Listing, Reservation, User } from "@prisma/client";
 import { useRouter } from "next/navigation";
 import useCountries from "@/app/hooks/usecountries";
@@ -13,7 +13,7 @@ import { BiRupee } from "react-icons/bi";
 interface ListingCardProps{
     data:SafeListting,
     currentUser?:SafeUser | null, 
-    reservation?:Reservation;
+    reservation?:SafeReservation;
     onAction?:(id:string)=>void;
     actionLabel?:string;
     actionId?:string   
@@ -44,11 +44,11 @@ const ListingCard:React.FC<ListingCardProps> = ({
     return;
  }
 
- onAction?.(actionId);
- 
- 
-    },[disabled,onAction,actionId])
+ onAction?.(actionId);  
 
+},[disabled,onAction,actionId])
+
+ 
 
 
 
@@ -58,7 +58,7 @@ const price = useMemo(()=>{
     }
 
     return data.price;
-},[reservation,data.price])
+},[reservation, data.price])
 
 
 
@@ -77,7 +77,7 @@ return `${format(start, 'PP')} -  ${format(end,'PP')}`
 
 
 return(<>
-<div  onClick={()=> router.push(`/listings/${data.id}`)} className="col-span-1 cursor-pointer group" >
+<div  onClick={()=> router.push(`/listings/${data.id}`)} className="col-span-1 cursor-pointer group rounded-xl   p-2 shadow-md" >
   <div className="flex flex-col gap-2 w-full">
      <div className="  aspect-square w-full relative overflow-hidden shadow-md rounded-xl">
         <Image  
@@ -103,14 +103,16 @@ return(<>
        <span>   {location?.region} , {location?.label}</span>
          </div>
          <div className="text-sm font-medium text-gray-600">{reservationDate ||  data.category || "not specified"}</div>
-         <div className="flex flex-row gap-5">
-            <div className="flex flex-row "> <BiRupee size={20}/> {data.price}</div>
-         <div>{!reservation && (
-            <div className="text-sm">Night</div>
+     
+                     <div className="flex flex-row gap-5">
+             <div className="flex flex-row "> <BiRupee size={20}/> {price}</div>  
+            
+         <div>{!reservation && ( 
+            <div className="text-sm">Night</div> 
          )}</div>
-         </div>
+       </div>
              <div>{onAction  && actionLabel && (
-               <Button disabled={disabled} onClick={handleCancel}>{actionLabel}</Button>
+               <Button className="w-full" disabled={disabled} onClick={handleCancel}>{actionLabel}</Button>
          )}</div>
   </div>
 </div>
