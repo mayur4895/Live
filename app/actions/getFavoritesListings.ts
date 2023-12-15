@@ -1,47 +1,35 @@
- 
- 
- 
- 
-import prisma from "@/app/libs/prismadb"
-import { getCurrentUser } from '@/app/actions/getCurrentUser';
- 
+import prisma from "@/app/libs/prismadb";
+import { getCurrentUser } from "./getCurrentUser";
 
  
-export async function getFavoritesListings() {
 
+export default async function getFavoriteListings() {
   try {
- const currentUser = await getCurrentUser();
- if(!currentUser){
-    return [];
-    
- }  
+    const currentUser = await getCurrentUser();
  
+    if (!currentUser) {
+      return [];
+    }
+
+
+  
  
+    const favorites = await prisma.listing.findMany({
  
-      
-       
-       const favoriteslistings = await prisma.listing.findMany({
-      where:{
-        id:{
-              in:[...(currentUser).favoriteIds || []]
+      where: {
+        id: {
+          in: [...(currentUser.favoriteIds || [])]
         }
       }
-       });
-           
-     
-const safeFavorites = favoriteslistings.map((favorite)=>({
-  ...favorite,
-  createdAt:favorite.createdAt.toISOString(),
-}))
-   
+    });
 
-  return safeFavorites
+    const safeFavorites = favorites.map((favorite) => ({
+      ...favorite,
+      createdAt: favorite.createdAt.toString(),
+    }));
 
-  } catch (error:any) {
-        throw new Error(error)
+    return safeFavorites;
+  } catch (error: any) {
+    throw new Error(error);
   }
 }
-
-
-
-

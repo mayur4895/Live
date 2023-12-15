@@ -78,6 +78,7 @@ interface UserNavbarProps{
  
 
     const [isopen,setisopen]= useState(false);
+console.log(currentUser?.favoriteIds);
 
   return (
     <>

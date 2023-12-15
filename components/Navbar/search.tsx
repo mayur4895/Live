@@ -45,6 +45,7 @@ return 'Any Week'
    },[startDate,endDate])
 
 
+ 
 
 
    const guestLabel =  useMemo(()=>{
@@ -57,8 +58,7 @@ return 'Any Week'
       },[guestCount])
       
 
-console.log(locationLabel);
-console.log(guestLabel);
+ 
 
 
    return(<>

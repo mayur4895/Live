@@ -9,7 +9,7 @@ export interface IListingsParams{
   userId?:string;
   guestCount?:number;
   roomCount?:number;
-  BathRoomCount?:number;
+  bathRoomCount?:number;
   startDate?:string;
   locationValue?:string;
   endDate?:string;
