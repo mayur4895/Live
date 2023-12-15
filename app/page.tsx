@@ -8,7 +8,7 @@ import Empty from "@/components/emptyState"
 import { getListings, IListingsParams } from './actions/getListings';
 import Image from "next/image"
 import ListingCard from "@/components/listing/ListingCard"
-import { getCurrentUser } from "./actions/getCurrentUser"
+import  getCurrentUser  from "./actions/getCurrentUser"
  
 
  interface HomeProps{

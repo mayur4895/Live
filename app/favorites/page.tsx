@@ -1,11 +1,12 @@
  
 
  
-import { getCurrentUser } from "@/app/actions/getCurrentUser";
+import  getCurrentUser  from "@/app/actions/getCurrentUser";
  import ClientOnly from "@/components/clientonly";
 import Empty from "@/components/emptyState"; 
 import FavoritesClient from "./FavoritesClient";
-import { getFavoritesListings } from "../actions/getFavoritesListings";
+import getFavoriteListings from "../actions/getFavoritesListings";
+ 
  
 
 
@@ -14,13 +15,13 @@ import { getFavoritesListings } from "../actions/getFavoritesListings";
 
  
  
-const  FavoritesPage = async( ) =>{
+const  FavoritesPage = async() =>{
  
    
     const currentUser = await  getCurrentUser();
 
   
-     const  listings = await   getFavoritesListings();
+     const  listings = await   getFavoriteListings();
  
    if(listings.length === 0){
   return(

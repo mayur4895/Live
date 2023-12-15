@@ -1,7 +1,7 @@
  
 
  
-import { getCurrentUser } from "@/app/actions/getCurrentUser";
+import  getCurrentUser from "@/app/actions/getCurrentUser";
 import { getListingById } from "@/app/actions/getListingById";
 import ClientOnly from "@/components/clientonly";
 import Empty from "@/components/emptyState";

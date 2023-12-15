@@ -1,6 +1,6 @@
 "use client"
 
-import { SafeListting, SafeReservation, SafeUser } from "@/app/types";
+import {  SafeListing, SafeReservation, SafeUser } from "@/app/types";
 import { Listing, Reservation, User } from "@prisma/client";
 import { useRouter } from "next/navigation";
 import useCountries from "@/app/hooks/usecountries";
@@ -11,7 +11,7 @@ import HeartButton from "../heartbutton";
 import { Button } from "../ui/button";
 import { BiRupee } from "react-icons/bi";
 interface ListingCardProps{
-    data:SafeListting,
+    data:SafeListing,
     currentUser?:SafeUser | null, 
     reservation?:SafeReservation;
     onAction?:(id:string)=>void;

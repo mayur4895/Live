@@ -19,7 +19,7 @@ import RegisterModal from '@/components/modals/registerModal';
  
 import { Toaster } from "@/components/ui/toaster"
 import LoginModal from '@/components/modals/loginModal';
-import { getCurrentUser } from  '../app/actions/getCurrentUser';
+import  getCurrentUser  from  '../app/actions/getCurrentUser';
 import RentModal from '@/components/modals/rentModal';
 import ImageUpload from '@/components/inputes/imageupload';
 import Home from './page';

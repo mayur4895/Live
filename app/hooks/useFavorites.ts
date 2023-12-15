@@ -3,7 +3,7 @@ import axios from "axios"
 import { SafeUser } from "../types"
 import useLoginModal from "./loginmodal"
 import { useRouter } from "next/navigation"
-import { getCurrentUser } from '@/app/actions/getCurrentUser';
+import getCurrentUser  from '@/app/actions/getCurrentUser';
 import { useCallback, useMemo } from "react";
 import { useToast, toast } from '@/components/ui/use-toast';
 import { request } from 'http';

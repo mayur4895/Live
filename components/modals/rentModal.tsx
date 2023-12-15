@@ -186,11 +186,8 @@ if(step === STEPS.LOCATION){
 <CountrySelect
   value={location}
   onChange={(value)=>setCustomvalue('location',value)}  
-  id="location"
-  disable={loding}
-  register={register}
-  label="anywhere" 
-  errors={errors} 
+ 
+     
 />
 <Map center={location?.latlng} />
  </>

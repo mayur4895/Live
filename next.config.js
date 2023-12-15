@@ -13,16 +13,14 @@ const nextConfig = {
   experimental: {
     appDir: true,
   },
-  eslint: {
-    ignoreDuringBuilds: true,
-},
+ 
 
 }
  
 
 module.exports = {
-  eslint: {
-    dirs: ['pages', 'utils'], 
-  },
+
   nextConfig
+
+  
 }

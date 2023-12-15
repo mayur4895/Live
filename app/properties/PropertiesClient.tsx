@@ -1,6 +1,6 @@
 'use client'
 
-import { SafeListting, SafeReservation, SafeUser } from '@/app/types';
+import { SafeListing, SafeReservation, SafeUser } from '@/app/types';
  
  import Container from "@/components/container";
 import { useCallback, useEffect, useMemo, useState } from "react";
@@ -23,7 +23,7 @@ import ListingCard from '@/components/listing/ListingCard';
 
 interface  PropertiesClientProps{
     
-     listings:SafeListting[];
+     listings:SafeListing[];
      currentUser?: SafeUser | null;
  }
 

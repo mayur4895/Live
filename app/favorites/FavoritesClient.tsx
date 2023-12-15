@@ -1,24 +1,19 @@
 'use client'
 
-import { SafeListting, SafeUser } from '@/app/types';
+import {  SafeListing, SafeUser } from '@/app/types';
  
  import Container from "@/components/container";
  
     
 import ListingCard from '@/components/listing/ListingCard';
  
- 
- 
   
-
-
-
  
 
 interface  FavoriteslientProps{
     
-     listings:SafeListting[];
-     currentUser?: SafeUser | null;
+     listings:SafeListing[];
+     currentUser?: SafeUser | null,   
  }
 
 
@@ -45,9 +40,9 @@ const Favoriteslient:React.FC<FavoriteslientProps> = ({
  listings.map((listing)=>(
     <ListingCard 
     
-     data={listing}
-     key={listing.id}
-     currentUser={currentUser}
+    currentUser={currentUser}
+            key={listing.id}
+            data={listing}
     
     />
  ))
