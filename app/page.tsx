@@ -1,5 +1,5 @@
 
- 
+export const dynamic = 'force-dynamic'
 import ClientOnly from "@/components/clientonly"
 import ImageUpload from "@/components/inputes/imageupload"
  import { Button } from "@/components/ui/button"
