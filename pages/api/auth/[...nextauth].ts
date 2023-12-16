@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic'
 import NextAuth from "next-auth/next"; 
 import { AuthOptions } from "next-auth";
  import GithubProvider from "next-auth/providers/github";
