@@ -25,11 +25,18 @@ enum STEPS {
 const SearchModal = ()=>{
 
 
- 
+    async function params() {
+        return new Promise((resolve) =>
+          setTimeout(() => {
+           
+            resolve(useSearchParams())
+          }, 1000)
+        )
+      }
 
 
 const router = useRouter();
-    const params =  useSearchParams();
+   
   const searchmodal = userSearchModal ();
   const [location ,setlocation] = useState<CountrySelectValue>()
   const [step,setstep ]= useState(STEPS.LOCATION);
