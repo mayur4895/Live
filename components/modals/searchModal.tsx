@@ -140,7 +140,7 @@ const ActionLabeld = useMemo(()=>{
                         <h4 className=" font-semibold text-xl">When do you plan to go?</h4>
                         <p className="text-sm">choose Dates</p>  
                     </div>
-                    <div className=' w-full   translate-x-[18%] m-auto'>
+                    <div className=' w-full     m-auto'>
                     <Calendar 
                       value={DateRange}
                       onChange={(value)=>setDateRange(value.selection)} 
